@@ -2,7 +2,9 @@
 
 == What is it?
 
-This is a fork of auth-hmac (https://github.com/seangeo/auth-hmac) to bring it a little up to date, and also clean it up a bit.
+This is a fork of auth-hmac (https://github.com/seangeo/auth-hmac) to bring it a little up to date, and also clean it up a bit. 
+There's also a new middleware so you can authenticate requests on the rack level. Controller filter and Active Resource specs 
+don't pass, maybe just using and old Rails API, but at least the main spec passes!
 
 auth_hmac is a Ruby implementation of HMAC[http://en.wikipedia.org/wiki/HMAC] based authentication of HTTP requests.
 
