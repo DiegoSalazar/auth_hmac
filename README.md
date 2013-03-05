@@ -6,13 +6,13 @@ There's also a new middleware so you can authenticate requests on the rack level
 ### Rails 2.3.x
 ```ruby
 # config/environment.rb
-config.middleware.use AuthHmac::Rack::Middleware, :keys => SharedSecretStore
+config.middleware.use AuthHmac::Rack::Middleware, :secrets => SharedSecretStore
 ```
 
 ### Rails 3.x
 ```ruby
 # config/routes.rb
-mount AuthHmac::Rack::Middleware => '/', :keys => SharedSecretStore
+mount AuthHmac::Rack::Middleware => '/', :secrets => SharedSecretStore
 ```
 
 where ```SharedSecretStore``` is an object that responds to :[] and returns shared secrets by access_id:

@@ -12,7 +12,7 @@ module AuthHmac
 
       def call(env)
         if check_hmac? env
-          @auth_hmac = AuthHMAC.new @options[:keys]
+          @auth_hmac = AuthHMAC.new @options[:secrets]
           
           if authenticated? env
             @app.call(env)
