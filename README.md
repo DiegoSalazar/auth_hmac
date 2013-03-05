@@ -128,8 +128,8 @@ using the trackers and forums there.
 
 ## Authors and Contributors
 
-rAtom was developed by Peerworks[http://peerworks.org] and written by Sean Geoghegan.
-updated by Diego Salazar
+* rAtom was developed by Peerworks[http://peerworks.org] and written by Sean Geoghegan.
+* updated by Diego Salazar
 
 ## LICENSE:
 
