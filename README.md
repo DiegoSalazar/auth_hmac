@@ -1,6 +1,6 @@
 # auth_hmac
 
-This is a fork of auth-hmac (https://github.com/seangeo/auth-hmac) to bring it a little up to date, and clean it up a bit. 
+This is a fork of [auth-hmac](https://github.com/seangeo/auth-hmac) to bring it a little up to date, and clean it up a bit. 
 There's also a new middleware so you can authenticate requests on the rack level:
 
 ### Rails 2.3.x
@@ -22,7 +22,7 @@ SharedSecretStore['access_key1'] # => 'shared_secret1'
 
 ## What is it?
 
-auth_hmac is a Ruby implementation of HMAC[http://en.wikipedia.org/wiki/HMAC] based authentication of HTTP requests.
+auth_hmac is a Ruby implementation of [HMAC](http://en.wikipedia.org/wiki/HMAC) based authentication of HTTP requests.
 
 HMAC authentication involves a client and server having a shared secret key.  When sending the request the client, signs the request using the secret key. This involves building a canonical representation of the request and then generating a HMAC of the request using the secret. The generated HMAC is then sent as part of the request.
 
@@ -30,7 +30,7 @@ When the server receives the request it builds the same canonical representation
 
 HMAC based authentication also provides message integrity checking because the HMAC is based on a combination of the shared secret and the content of the request.  So if any part of the request that is used to build the canonical representation is modified by a malicious party or in transit the authentication will then fail.
 
-AuthHMAC was built to support authentication between various applications build by Peerworks[http://peerworks.org].
+AuthHMAC was built to support authentication between various applications build by (Peerworks)[http://peerworks.org].
 
 AuthHMAC is loosely based on the Amazon Web Services authentication scheme but without the Amazon specific components, i.e. it is HMAC for the rest of us.
 
@@ -51,6 +51,7 @@ AuthHMAC.sign! takes a HTTP request object, an access id and a secret key and si
 * The HTTP request object can be a Net::HTTP::HTTPRequest object, a CGI::Request object or a Webrick HTTP request object.  AuthHMAC will do its best to figure out which type it is an handle it accordingly. 
 * The access_id is used to identify the secret key that was used to sign the request. Think of it as like a user name, it allows you to hand out different keys to different clients and authenticate each of them individually. The access_id is sent in the clear so you should avoid making it an important string.
 * The secret key is the shared secret between the client and the server.  You should make this sufficiently random so that is can't be guessed or exposed to dictionary attacks. The follow code will give you a pretty good secret key:
+
 ```ruby
 	random = File.read('/dev/random', 512)
 	secret_key = Base64.encode64(Digest::SHA2.new(512).digest(random))
@@ -58,7 +59,7 @@ AuthHMAC.sign! takes a HTTP request object, an access id and a secret key and si
 
 On the server side you can then authenticate these requests using the AuthHMAC.authenticated? method. This takes the same arguments as the sign! method but returns true if the request has been signed with the access id and secret	or false if it hasn't.
 
-If you have more than one set of credentials you might find it useful to create an instance of the AuthHMAC class, passing your credentials as a Hash of access id => secret keys, like so:
+If you have more than one set of credentials you might find it useful to create an instance of the AuthHMAC class, passing your credentials as a Hash of ```'access id' => 'secret'``` keys, like so:
 ```ruby
 	@authhmac = AuthHMAC.new('access_id1' => 'secret1', 'access_id2' => 'secret2')
 ```
@@ -93,7 +94,7 @@ This canonical string is created like so:
                    request-uri;
 ```
 
-Where Content-Type, Content-MD5 and Date are all taken from the headers of the request.  If Content-Type or Content-MD5 are not present, they are substituted with an empty string.  If Date is not present it is added to the request headers with the value +Time.now.httpdate+.  +request-uri+ is the path component of the request, without any query string, i.e. everything up to the ?.
+Where Content-Type, Content-MD5 and Date are all taken from the headers of the request.  If Content-Type or Content-MD5 are not present, they are substituted with an empty string.  If Date is not present it is added to the request headers with the value ```Time.now.httpdate```.  ```request-uri``` is the path component of the request, without any query string, i.e. everything up to the ?.
 
 This string is then used with the secret to generate a SHA1 HMAC using the following:
 ```ruby
@@ -105,7 +106,7 @@ The result is then Base64 encoded and added to the headers of the request as the
   WWW-Authenticate: AuthHMAC <access_id>:<base64 encoded hmac>
 ```
 
-When authenaticating a request, AuthHMAC looks for the Authorization header in the above format, parses out the components, regenerates a HMAC for the request, using the secret key identified by the access id and then compares the generated HMAC with the one provided by the client.  If they match the request is authenticated.
+When authenticating a request, AuthHMAC looks for the Authorization header in the above format, parses out the components, regenerates a HMAC for the request, using the secret key identified by the access id and then compares the generated HMAC with the one provided by the client.  If they match the request is authenticated.
 
 Using these details it is possible to build code that will sign and authenticate AuthHMAC style requests in other languages.
 
@@ -123,12 +124,11 @@ The source repository is accessible via GitHub:
 
 ## Contact Information
 
-The project page is at http://github.com/DiegoSalazar/auth_hmac.git. Please file any bugs or feedback
-using the trackers and forums there.
+The project page is at http://github.com/DiegoSalazar/auth_hmac.git. Please file any bugs or feedback using the issues page there.
 
 ## Authors and Contributors
 
-* rAtom was developed by Peerworks[http://peerworks.org] and written by Sean Geoghegan.
+* rAtom was developed by (Peerworks)[http://peerworks.org] and written by Sean Geoghegan.
 * updated by Diego Salazar
 
 ## LICENSE:
