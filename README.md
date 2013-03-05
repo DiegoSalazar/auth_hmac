@@ -101,7 +101,7 @@ This string is then used with the secret to generate a SHA1 HMAC using the follo
 OpenSSL::HMAC.digest(OpenSSL::Digest::Digest.new('sha1'), secret_key, canonical_string)
 ```
 
-The result is then Base64 encoded and added to the headers of the request as the +WWW-Authenticate+ header in the format:
+The result is then Base64 encoded and added to the headers of the request as the ```WWW-Authenticate``` header in the format:
 ```ruby
 WWW-Authenticate: AuthHMAC <access_id>:<base64 encoded hmac>
 ```
