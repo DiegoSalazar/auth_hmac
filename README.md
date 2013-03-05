@@ -116,11 +116,10 @@ Using these details it is possible to build code that will sign and authenticate
 
 ## Source Code
 
-The source repository is accessible via GitHub or Ruby Forge:
-
+The source repository is accessible via GitHub:
+```ruby
   git clone git://github.com/DiegoSalazar/auth_hmac.git
-
-  git clone git://rubyforge.org/auth_hmac.git
+```
 
 ## Contact Information
 
