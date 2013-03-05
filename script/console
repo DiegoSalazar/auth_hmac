@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+irb = RUBY_PLATFORM =~ /(:?mswin|mingw)/ ? 'irb.bat' : 'irb'
+
+libs =  " -r irb/completion"
+libs <<  " -r #{File.expand_path('../lib/auth_hmac', File.dirname(__FILE__))}"
+libs << ' -r action_controller/test_case'
+puts "Loading auth_hmac gem"
+exec "#{irb} #{libs}"
