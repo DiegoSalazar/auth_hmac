@@ -28,7 +28,7 @@ module AuthHmac
       
       def check_hmac?
         path = env['PATH_INFO'] || ''
-        @options[:only].detect { |p| path.include? p }
+        @options[:only].any? { |p| path.include? p }
       end
       
       def authenticated?(request)
