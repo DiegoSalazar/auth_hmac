@@ -128,7 +128,7 @@ The project page is at http://github.com/DiegoSalazar/auth_hmac.git. Please file
 
 ## Authors and Contributors
 
-* rAtom was developed by (Peerworks)[http://peerworks.org] and written by Sean Geoghegan.
+* rAtom was developed by [Peerworks](http://peerworks.org) and written by Sean Geoghegan.
 * updated by Diego Salazar
 
 ## LICENSE:
