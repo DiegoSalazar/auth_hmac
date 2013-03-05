@@ -53,26 +53,26 @@ AuthHMAC.sign! takes a HTTP request object, an access id and a secret key and si
 * The secret key is the shared secret between the client and the server.  You should make this sufficiently random so that is can't be guessed or exposed to dictionary attacks. The follow code will give you a pretty good secret key:
 
 ```ruby
-	random = File.read('/dev/random', 512)
-	secret_key = Base64.encode64(Digest::SHA2.new(512).digest(random))
+random = File.read('/dev/random', 512)
+secret_key = Base64.encode64(Digest::SHA2.new(512).digest(random))
 ```
 
 On the server side you can then authenticate these requests using the AuthHMAC.authenticated? method. This takes the same arguments as the sign! method but returns true if the request has been signed with the access id and secret	or false if it hasn't.
 
 If you have more than one set of credentials you might find it useful to create an instance of the AuthHMAC class, passing your credentials as a Hash of ```'access id' => 'secret'``` keys, like so:
 ```ruby
-	@authhmac = AuthHMAC.new('access_id1' => 'secret1', 'access_id2' => 'secret2')
+@authhmac = AuthHMAC.new('access_id1' => 'secret1', 'access_id2' => 'secret2')
 ```
 
 You can then use the instance methods of the @authhmac object to sign and authenticate requests, for example:
 ```ruby
-	@authhmac.sign!(request, "access_id1")
+@authhmac.sign!(request, "access_id1")
 ```
 
 will sign +request+ with "access_id1" and it's corresponding secret key.  Similarly authentication is done like so:
 
 ```ruby
-  @authhmac.authenticated?(request)
+@authhmac.authenticated?(request)
 ```
 
 which will return true if the request has been signed with one of the access id and secret key pairs provided in the constructor.
@@ -87,7 +87,7 @@ When creating a signature for a HTTP request AuthHMAC first generates a canonica
 
 This canonical string is created like so:
 ```ruby
-  canonical_string = HTTP-Verb    + "\n" +
+canonical_string = HTTP-Verb    + "\n" +
                    Content-Type + "\n" +
                    Content-MD5  + "\n" +
                    Date         + "\n" +
@@ -98,12 +98,12 @@ Where Content-Type, Content-MD5 and Date are all taken from the headers of the r
 
 This string is then used with the secret to generate a SHA1 HMAC using the following:
 ```ruby
-  OpenSSL::HMAC.digest(OpenSSL::Digest::Digest.new('sha1'), secret_key, canonical_string)
+OpenSSL::HMAC.digest(OpenSSL::Digest::Digest.new('sha1'), secret_key, canonical_string)
 ```
 
 The result is then Base64 encoded and added to the headers of the request as the +WWW-Authenticate+ header in the format:
 ```ruby
-  WWW-Authenticate: AuthHMAC <access_id>:<base64 encoded hmac>
+WWW-Authenticate: AuthHMAC <access_id>:<base64 encoded hmac>
 ```
 
 When authenticating a request, AuthHMAC looks for the Authorization header in the above format, parses out the components, regenerates a HMAC for the request, using the secret key identified by the access id and then compares the generated HMAC with the one provided by the client.  If they match the request is authenticated.
@@ -119,7 +119,7 @@ Using these details it is possible to build code that will sign and authenticate
 
 The source repository is accessible via GitHub:
 ```ruby
-  git clone git://github.com/DiegoSalazar/auth_hmac.git
+git clone git://github.com/DiegoSalazar/auth_hmac.git
 ```
 
 ## Contact Information
