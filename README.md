@@ -1,7 +1,5 @@
 # auth_hmac
 
-## What is it?
-
 This is a fork of auth-hmac (https://github.com/seangeo/auth-hmac) to bring it a little up to date, and also clean it up a bit. 
 There's also a new middleware so you can authenticate requests on the rack level:
 
@@ -16,6 +14,13 @@ config.middleware.use AuthHmac::Rack::Middleware, :keys => SharedSecretStore
 # config/routes.rb
 mount AuthHmac::Rack::Middleware => '/', :keys => SharedSecretStore
 ```
+
+where ```SharedSecretStore``` is an object that responds to :[] and returns shared secrets by access_id:
+```ruby
+SharedSecretStore['access_key1'] # => 'shared_secret1'
+```
+
+## What is it?
 
 auth_hmac is a Ruby implementation of HMAC[http://en.wikipedia.org/wiki/HMAC] based authentication of HTTP requests.
 
