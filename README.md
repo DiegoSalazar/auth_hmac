@@ -1,6 +1,6 @@
 # auth_hmac
 
-This is a fork of auth-hmac (https://github.com/seangeo/auth-hmac) to bring it a little up to date, and also clean it up a bit. 
+This is a fork of auth-hmac (https://github.com/seangeo/auth-hmac) to bring it a little up to date, and clean it up a bit. 
 There's also a new middleware so you can authenticate requests on the rack level:
 
 ### Rails 2.3.x
