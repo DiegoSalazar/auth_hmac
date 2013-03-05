@@ -123,7 +123,7 @@ The source repository is accessible via GitHub:
 
 ## Contact Information
 
-The project page is at http://rubyforge.org/projects/auth_hmac. Please file any bugs or feedback
+The project page is at http://github.com/DiegoSalazar/auth_hmac.git. Please file any bugs or feedback
 using the trackers and forums there.
 
 ## Authors and Contributors
