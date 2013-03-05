@@ -106,7 +106,7 @@ The result is then Base64 encoded and added to the headers of the request as the
 WWW-Authenticate: AuthHMAC <access_id>:<base64 encoded hmac>
 ```
 
-When authenticating a request, AuthHMAC looks for the Authorization header in the above format, parses out the components, regenerates a HMAC for the request, using the secret key identified by the access id and then compares the generated HMAC with the one provided by the client.  If they match the request is authenticated.
+When authenticating a request, AuthHMAC looks for the WWW-Authenticate header in the above format, parses out the components, regenerates a HMAC for the request, using the secret key identified by the access id and then compares the generated HMAC with the one provided by the client.  If they match the request is authenticated.
 
 Using these details it is possible to build code that will sign and authenticate AuthHMAC style requests in other languages.
 
