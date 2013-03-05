@@ -75,9 +75,9 @@ This string is then used with the secret to generate a SHA1 HMAC using the follo
 
   OpenSSL::HMAC.digest(OpenSSL::Digest::Digest.new('sha1'), secret_key, canonical_string)
 
-The result is then Base64 encoded and added to the headers of the request as the +Authorization+ header in the format:
+The result is then Base64 encoded and added to the headers of the request as the +WWW-Authenticate+ header in the format:
 
-  Authorization: AuthHMAC <access_id>:<base64 encoded hmac>
+  WWW-Authenticate: AuthHMAC <access_id>:<base64 encoded hmac>
 
 When authenaticating a request, AuthHMAC looks for the Authorization header in the above format, parses out the components, regenerates a HMAC for the request, using the secret key identified by the access id and then compares the generated HMAC with the one provided by the client.  If they match the request is authenticated.
 
